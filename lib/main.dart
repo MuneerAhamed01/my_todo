@@ -1,9 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_todo/firebase_options.dart';
+import 'package:my_todo/repositories/auth_repository.dart';
 import 'package:my_todo/utils/colors.dart';
 import 'package:my_todo/utils/fonts.dart';
 import 'package:my_todo/utils/snackbar.dart';
+import 'package:my_todo/views/auth/bloc/auth_bloc.dart';
+import 'package:my_todo/views/auth/views/auth_screen.dart';
+import 'package:my_todo/views/widgets/custom_tab/cubit/tab_handler_cubit.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,57 +31,25 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: MyColorScheme.dark(),
         useMaterial3: true,
-        textTheme: ThemeData.light().textTheme.nunito,
+        textTheme: ThemeData.dark().textTheme.nunito,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+      builder: (context, child) {
+        return RepositoryProvider<AuthRepository>(
+          create: (context) => AuthRepository(),
+          child: MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => AuthBloc(context.read<AuthRepository>()),
+              ),
+              BlocProvider(
+                create: (context) => TabHandlerCubit(),
+              )
+            ],
+            child: child!,
+          ),
+        );
+      },
+      home: const AuthScreen(),
     );
   }
 }

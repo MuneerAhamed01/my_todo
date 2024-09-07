@@ -119,7 +119,7 @@ class AuthRepository {
   }
 
   // Get current user
-  User? getCurrentUser() {
+  User? get getCurrentUser {
     return _firebaseAuth.currentUser;
   }
 
@@ -130,7 +130,7 @@ class AuthRepository {
     String? profilePictureUrl,
   }) async {
     try {
-      final user = getCurrentUser();
+      final user = getCurrentUser;
       if (user == null) throw Exception('No authenticated user found');
 
       // Check if username is unique
