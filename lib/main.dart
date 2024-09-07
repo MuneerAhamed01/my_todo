@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:my_todo/firebase_options.dart';
+import 'package:my_todo/utils/colors.dart';
+import 'package:my_todo/utils/fonts.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,10 +20,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'My TODO',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: MyColorScheme.dark(),
         useMaterial3: true,
+        textTheme: ThemeData.light().textTheme.nunito,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
