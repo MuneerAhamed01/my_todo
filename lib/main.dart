@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:my_todo/firebase_options.dart';
 import 'package:my_todo/utils/colors.dart';
 import 'package:my_todo/utils/fonts.dart';
+import 'package:my_todo/utils/snackbar.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigatorKey,
       title: 'My TODO',
       theme: ThemeData(
         colorScheme: MyColorScheme.dark(),
