@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_todo/utils/colors.dart';
+import 'package:my_todo/views/auth/utils/string_consts.dart';
 import 'package:my_todo/views/widgets/custom_tab/cubit/tab_handler_cubit.dart';
 
 class CustomLoginTabBar extends StatelessWidget {
@@ -33,7 +34,7 @@ class CustomLoginTabBar extends StatelessWidget {
                   height: 48,
                   child: Center(
                     child: Text(
-                      'Email',
+                      StringConsts.emailAddress,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             color: state.selectedTab == 0
                                 ? Colors.white
@@ -64,7 +65,7 @@ class CustomLoginTabBar extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      'Mobile No.',
+                      StringConsts.mobileNoText,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             color: state.selectedTab == 1
                                 ? Colors.white

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_todo/views/auth/utils/string_consts.dart';
+import 'package:my_todo/views/widgets/custom_tab/cubit/tab_handler_cubit.dart';
 import 'package:my_todo/views/widgets/custom_tab/custom_tab.dart';
+import 'package:my_todo/views/widgets/textfield.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({super.key});
@@ -28,7 +31,21 @@ class AuthScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: 24),
-              const CustomLoginTabBar()
+              const CustomLoginTabBar(),
+              const SizedBox(height: 24),
+              BlocBuilder<TabHandlerCubit, TabHandlerState>(
+                builder: (ctx, state) {
+                  return Column(
+                    children: [
+                      AppTextField(
+                        hintText: state.selectedTab == 0
+                            ? StringConsts.emailAddress
+                            : StringConsts.password,
+                      ),
+                    ],
+                  );
+                },
+              )
             ],
           ),
         ),

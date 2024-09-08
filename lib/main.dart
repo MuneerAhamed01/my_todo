@@ -5,6 +5,7 @@ import 'package:my_todo/firebase_options.dart';
 import 'package:my_todo/repositories/auth_repository.dart';
 import 'package:my_todo/utils/colors.dart';
 import 'package:my_todo/utils/fonts.dart';
+import 'package:my_todo/utils/inputdecorations.dart';
 import 'package:my_todo/utils/snackbar.dart';
 import 'package:my_todo/views/auth/bloc/auth_bloc.dart';
 import 'package:my_todo/views/auth/views/auth_screen.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
       title: 'My TODO',
       theme: ThemeData(
         colorScheme: MyColorScheme.dark(),
+        inputDecorationTheme: AppInputDecorationTheme(),
         useMaterial3: true,
         textTheme: ThemeData.dark().textTheme.nunito,
       ),
